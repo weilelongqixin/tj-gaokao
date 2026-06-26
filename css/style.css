@@ -253,13 +253,23 @@ body {
   border: 1px solid var(--border);
 }
 .bucket-header {
-  padding: 12px 16px;
+  padding: 14px 16px;
   font-weight: 600;
   font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.bucket-header:hover {
+  filter: brightness(0.95);
+}
+.bucket-header:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: -3px;
 }
 .bucket-header.chong {
   background: var(--chong);
@@ -270,6 +280,27 @@ body {
 .bucket-header.bao {
   background: var(--bao);
 }
+.bucket-title {
+  flex: 1;
+  min-width: 0;
+}
+.bucket-desc {
+  opacity: 0.85;
+  font-size: 13px;
+  font-weight: 400;
+}
+.bucket-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.collapse-arrow {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  opacity: 0.9;
+}
 .bucket-header .count {
   background: rgba(255, 255, 255, 0.25);
   padding: 2px 10px;
@@ -278,6 +309,9 @@ body {
 }
 .bucket-body {
   background: var(--card);
+}
+.bucket-body.collapsed {
+  display: none;
 }
 .group-card {
   padding: 14px 16px;

@@ -186,13 +186,21 @@
       total += list.length;
       const bucket = document.createElement("div");
       bucket.className = "bucket";
+      // 默认：冲刺档默认折叠（数量多），稳妥/保底默认展开
+      const collapsed = d.key === "chong";
       bucket.innerHTML = `
-        <div class="bucket-header ${d.cls}">
-          <span>${d.title} <span style="opacity:.85;font-size:13px;font-weight:400">· ${d.desc}</span></span>
-          <span class="count">${list.length} 个</span>
+        <div class="bucket-header ${d.cls}" role="button" tabindex="0">
+          <span class="bucket-title">${d.title} <span class="bucket-desc">· ${d.desc}</span></span>
+          <span class="bucket-right"><span class="count">${list.length} 个</span><span class="collapse-arrow">${collapsed ? "▶" : "▼"}</span></span>
         </div>
         <div class="bucket-body"></div>`;
       const body = bucket.querySelector(".bucket-body");
+      const header = bucket.querySelector(".bucket-header");
+      const arrow = bucket.querySelector(".collapse-arrow");
+      if (collapsed) {
+        body.classList.add("collapsed");
+        header.classList.add("collapsed");
+      }
       if (list.length === 0) {
         body.innerHTML = '<div class="empty">该档暂无匹配院校</div>';
       } else {
@@ -203,6 +211,19 @@
           body.innerHTML += `<div class="empty">…还有 ${list.length - 30} 个，建议缩小范围查看</div>`;
         }
       }
+      // 点击 header 折叠/展开
+      const toggle = function () {
+        const isCollapsed = body.classList.toggle("collapsed");
+        header.classList.toggle("collapsed", isCollapsed);
+        arrow.textContent = isCollapsed ? "▶" : "▼";
+      };
+      header.addEventListener("click", toggle);
+      header.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
       bucketsContainer.appendChild(bucket);
     }
     if (total === 0) {
