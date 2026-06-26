@@ -14,11 +14,25 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- 密码门：未输对密码前盖住整个应用 -->
+    <div class="gate" id="gate">
+      <div class="gate-card">
+        <h2>🎓 天津高考志愿填报助手</h2>
+        <p>请输入访问密码（向分享人索取）</p>
+        <input type="password" id="gateInput" placeholder="访问密码" autocomplete="off" />
+        <div class="err" id="gateErr"></div>
+        <button class="btn" id="gateBtn">进入</button>
+      </div>
+    </div>
+
     <div class="container">
       <header class="header">
         <h1>🎓 天津高考志愿填报助手</h1>
         <p class="subtitle">输入分数和选科，看全市位次 & 往年能报哪些学校</p>
         <span class="badge">数据来源：天津教育招生考试院公开一分一段表</span>
+        <div style="margin-top:10px">
+          <a href="share.html" class="btn btn-secondary" style="display:inline-block;width:auto;padding:8px 18px;font-size:14px">📱 生成二维码分享给亲友</a>
+        </div>
       </header>
 
       <!-- 步骤1：输入 -->
@@ -122,9 +136,10 @@
       </footer>
     </div>
 
-    <script src="js/ranking.js?v=3"></script>
-    <script src="js/subject.js?v=3"></script>
-    <script src="js/matcher.js?v=3"></script>
-    <script src="js/app.js?v=3"></script>
+    <script src="js/gate.js?v=1"></script>
+    <script src="js/ranking.js?v=4"></script>
+    <script src="js/subject.js?v=4"></script>
+    <script src="js/matcher.js?v=4"></script>
+    <script src="js/app.js?v=4"></script>
   </body>
 </html>

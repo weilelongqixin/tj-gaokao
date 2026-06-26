@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>分享 · 天津高考志愿填报助手</title>
+<link rel="stylesheet" href="css/style.css?v=4">
+<style>
+body{background:var(--bg)}
+.share-wrap{max-width:420px;margin:0 auto;padding:24px 16px;text-align:center}
+.share-card{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:28px 20px;margin-bottom:16px}
+.share-card h2{color:var(--primary-dark);font-size:20px;margin-bottom:8px}
+.share-card .sub{color:var(--text-sub);font-size:14px;margin-bottom:20px}
+#qrcode{display:inline-block;padding:16px;background:#fff;border:1px solid var(--border);border-radius:12px}
+#qrcode img,#qrcode canvas{display:block;width:200px;height:200px}
+.url-box{margin-top:18px;padding:12px;background:#f5f7fa;border-radius:8px;font-size:13px;word-break:break-all;color:var(--text-sub);font-family:Menlo,monospace}
+.copy-btn{margin-top:12px}
+.tip{color:var(--text-light);font-size:13px;line-height:1.7;margin-top:8px}
+</style></head>
+<body>
+<div class="share-wrap">
+  <div class="share-card">
+    <h2>📱 扫码使用</h2>
+    <p class="sub">让亲友用手机扫下方二维码即可打开</p>
+    <div id="qrcode">生成中…</div>
+    <div class="url-box" id="urlBox"></div>
+    <button class="btn copy-btn" id="copyBtn">复制网址</button>
+    <div class="tip">
+      ⚠️ 访问需要密码：<strong id="pwdTip">tj2025</strong><br>
+      （请单独把密码告诉对方）
+    </div>
+  </div>
+  <a href="./" class="btn btn-secondary">返回应用</a>
+</div>
+<script src="js/lib/qrcode.min.js"></script>
+<script>
+(function(){
+  var url = location.origin + location.pathname.replace(/share\.html$/, '');
+  document.getElementById('urlBox').textContent = url;
+  // 用 qrcode-generator 生成
+  try {
+    var qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    document.getElementById('qrcode').innerHTML = qr.createImgTag(4, 0);
+  } catch(e) {
+    document.getElementById('qrcode').innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(url)+'" width="200" height="200" alt="二维码">';
+  }
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    navigator.clipboard.writeText(url).then(function(){
+      var b=document.getElementById('copyBtn'); b.textContent='已复制 ✓'; setTimeout(function(){b.textContent='复制网址';},1500);
+    }).catch(function(){
+      prompt('请手动复制：', url);
+    });
+  });
+})();
+</script>
+</body></html>

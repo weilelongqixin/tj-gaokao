@@ -407,3 +407,76 @@ body {
     font-size: 15px;
   }
 }
+
+/* 密码门 */
+.gate {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #e6f4ff 0%, #f5f7fa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.gate-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 32px 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+.gate-card h2 {
+  color: var(--primary-dark);
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.gate-card p {
+  color: var(--text-sub);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.gate input {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+.gate input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.gate .err {
+  color: var(--chong);
+  font-size: 13px;
+  min-height: 18px;
+  margin-bottom: 8px;
+}
+
+/* 二维码分享 */
+.share-bar {
+  text-align: center;
+  padding: 16px 0;
+}
+.share-bar .qrcode {
+  display: inline-block;
+  padding: 12px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.share-bar .qrcode img,
+.share-bar .qrcode canvas {
+  display: block;
+}
+.share-bar .share-tip {
+  color: var(--text-sub);
+  font-size: 13px;
+  margin-top: 8px;
+}
