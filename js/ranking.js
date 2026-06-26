@@ -36,39 +36,38 @@ TJ.Ranking = (function () {
   }
 
   // 由分数查当年位次（累计人数）
-  // 若精确分数存在于表中，直接返回其 cum；
-  // 若分数高于表内最高分(如 700+ 在最高分段区间内)，按最高分段累计处理；
-  // 若分数低于表内最低分，返回 null。
+  // 返回 { rank, isEstimate }：
+  //   - 精确命中：rank=位次, isEstimate=false
+  //   - 落在最高分合并区间(如天津680及以上)：rank=估算位次, isEstimate=true
+  //   - 低于最低分：rank=null
   function scoreToRank(year, score) {
     const t = tables[year];
     if (!t) throw new Error(`未加载 ${year} 年数据`);
     const exact = t.byScore.get(score);
-    if (exact) return exact.cum;
-    // 分数高于最高分单点记录：最高分通常是"681-750"这样的区间，
-    // 此时 cum 表示 ≥ 该区间下限的人数，对高于下限的分数，位次取该区间内插值更准
-    if (score >= t.maxScore) {
-      const top = t.rows[0]; // 最高分段
-      if (top.score_lo !== undefined) {
-        // 在 [score_lo, maxScore] 内线性估算（高分段人数很少，近似合理）
-        const span = top.score - top.score_lo + 1;
-        const above = Math.max(0, top.score - score); // 比区间上限高出多少分
-        const estCount = Math.max(1, Math.round(top.count * (1 - above / span)));
-        return Math.max(1, top.cum - (top.count - estCount));
-      }
-      return top.cum;
+    if (exact) return { rank: exact.cum, isEstimate: false };
+    // 分数落在最高分合并区间内（如天津"680及以上"，数据存为 score=750,score_lo=680）。
+    // 官方对这一段不细分到每分，任何具体位次都是线性估算。
+    const top = t.rows[0];
+    if (top && top.score_lo !== undefined && score >= top.score_lo && score <= top.score) {
+      const span = top.score - top.score_lo + 1;
+      const above = Math.max(0, top.score - score); // 距区间上限差多少分
+      const estCount = Math.max(1, Math.round(top.count * (1 - above / span)));
+      return { rank: Math.max(1, top.cum - (top.count - estCount)), isEstimate: true };
     }
-    // 分数在表中间但非整数命中（理论上 1 分一档不该出现，做兜底）：取最近的高一档
-    // 这里找略高于该分数的最小档（cum 更小）
+    // 分数高于区间上限（极少见，如查 760 分）：取区间累计
+    if (score > t.maxScore) {
+      return { rank: top ? top.cum : null, isEstimate: true };
+    }
+    // 分数在表中间但非整数命中（兜底）：取最近的高一档
     for (const r of t.rows) {
       if (r.score <= score) {
-        // 向下找：r.score 略低于 score，位次用 r 累计减去该分段中分数高于 score 的部分
         const seg = r.count;
-        const above = score - r.score; // 在该分段内高出多少分（该分段理论上是 1 分，通常 0）
-        const est = Math.max(0, seg - Math.round(above)); // 极少数情况
-        return Math.max(1, r.cum - est);
+        const above = score - r.score;
+        const est = Math.max(0, seg - Math.round(above));
+        return { rank: Math.max(1, r.cum - est), isEstimate: false };
       }
     }
-    return null; // 低于最低分
+    return { rank: null, isEstimate: false }; // 低于最低分
   }
 
   // 由位次反查等位分：在 year 的一分一段表里，找出 cum >= rank 的最小分数
@@ -89,8 +88,8 @@ TJ.Ranking = (function () {
   // compareYears: 数组，如 [2023,2024]
   async function convert(baseYear, score, compareYears) {
     await load(baseYear);
-    const rank = scoreToRank(baseYear, score);
-    const result = { baseYear, score, rank, equiv: [] };
+    const { rank, isEstimate } = scoreToRank(baseYear, score);
+    const result = { baseYear, score, rank, isEstimate, equiv: [] };
     if (rank == null) return result;
     for (const y of compareYears) {
       await load(y);

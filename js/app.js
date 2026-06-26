@@ -151,6 +151,19 @@
       conv.rank != null ? conv.rank.toLocaleString() : "—";
     document.getElementById("rankScore").textContent = score;
 
+    // 高分段估算提示：天津官方一分一段表 680 以上合并为一段，
+    // 不公布逐分位次，此处为线性估算。
+    const notice = document.getElementById("estimateNotice");
+    if (conv.isEstimate && conv.rank != null) {
+      notice.innerHTML =
+        "⚠️ <strong>此位次为估算值。</strong>天津官方一分一段表对 680 分以上" +
+        "合并统计（不细分到每分），该分数落在合并区间内，具体位次为线性估算。" +
+        "精确位次请以天津招考资讯网查分系统显示的为准。";
+      notice.classList.remove("hidden");
+    } else {
+      notice.classList.add("hidden");
+    }
+
     // 本科线提示
     const line = LINE_SCORES[BASE_YEAR];
     if (score < line) {
