@@ -362,15 +362,26 @@
   let collegesCache = null;
   async function loadColleges() {
     if (collegesCache) return collegesCache;
-    try {
-      const resp = await fetch("data/colleges/colleges.json");
-      if (!resp.ok) throw new Error("院校数据未就绪");
-      collegesCache = await resp.json();
-    } catch (e) {
-      console.warn("院校数据加载失败：", e);
-      collegesCache = [];
+    // 重试 3 次，避免大文件(1MB)在弱网下偶发加载失败
+    let lastErr = null;
+    for (let i = 0; i < 3; i++) {
+      try {
+        const resp = await fetch("data/colleges/colleges.json?v=11");
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        collegesCache = await resp.json();
+        if (collegesCache && collegesCache.length > 0) return collegesCache;
+        throw new Error("数据为空");
+      } catch (e) {
+        lastErr = e;
+        // 等待后重试
+        await new Promise((r) => setTimeout(r, 800 * (i + 1)));
+      }
     }
-    return collegesCache;
+    throw new Error(
+      "院校数据加载失败（" +
+        (lastErr ? lastErr.message : "网络错误") +
+        "）。请检查网络后重试。"
+    );
   }
 
   // 初始化
