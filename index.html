@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>天津高考志愿填报助手 · 位次换算与报考范围指导</title>
+    <meta
+      name="description"
+      content="输入孩子分数和选科，一键换算全市位次、往年等位分，并给出冲稳保报考范围。专为天津高考家长设计。"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>🎓 天津高考志愿填报助手</h1>
+        <p class="subtitle">输入分数和选科，看全市位次 & 往年能报哪些学校</p>
+        <span class="badge">数据来源：天津教育招生考试院公开一分一段表</span>
+      </header>
+
+      <!-- 步骤1：输入 -->
+      <section class="card" id="inputCard">
+        <h2 class="card-title"><span class="num">1</span>输入孩子的高考信息</h2>
+
+        <div class="field">
+          <label for="scoreInput">高考总分</label>
+          <input
+            type="number"
+            id="scoreInput"
+            class="score-input"
+            inputmode="numeric"
+            placeholder="请输入分数，如 620"
+            min="300"
+            max="750"
+          />
+          <div class="hint" id="scoreHint">满分 750 分，本科线约 476 分</div>
+        </div>
+
+        <div class="field">
+          <label>选考科目（天津 3+3，从下面 6 门中选 3 门）</label>
+          <div class="subject-grid" id="subjectGrid">
+            <label class="subject-chip"
+              ><input type="checkbox" value="phy" />物理</label
+            >
+            <label class="subject-chip"
+              ><input type="checkbox" value="chem" />化学</label
+            >
+            <label class="subject-chip"
+              ><input type="checkbox" value="bio" />生物</label
+            >
+            <label class="subject-chip"
+              ><input type="checkbox" value="pol" />政治</label
+            >
+            <label class="subject-chip"
+              ><input type="checkbox" value="his" />历史</label
+            >
+            <label class="subject-chip"
+              ><input type="checkbox" value="geo" />地理</label
+            >
+          </div>
+          <div class="subject-count" id="subjectCount">已选 0 / 3</div>
+        </div>
+
+        <button class="btn" id="submitBtn" disabled>开始换算并推荐</button>
+      </section>
+
+      <!-- 步骤2：位次换算结果 -->
+      <section class="card hidden" id="rankCard">
+        <h2 class="card-title"><span class="num">2</span>全市位次换算</h2>
+        <div class="rank-result">
+          <div class="rank-big">
+            <span id="rankValue">—</span><small> 名</small>
+          </div>
+          <div class="rank-label">
+            孩子考 <strong id="rankScore">—</strong> 分，在全市排在这个位次
+          </div>
+          <p
+            style="
+              color: var(--text-sub);
+              font-size: 14px;
+              margin-bottom: 12px;
+            "
+          >
+            同样是这个位次，在往年相当于多少分？（位次法比直接比分更准）
+          </p>
+          <table class="equiv-table">
+            <thead>
+              <tr>
+                <th>年份</th>
+                <th>同位次对应分数</th>
+              </tr>
+            </thead>
+            <tbody id="equivBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 步骤3：报考范围 -->
+      <section class="card hidden" id="matchCard">
+        <h2 class="card-title"><span class="num">3</span>报考范围参考</h2>
+        <p
+          style="color: var(--text-sub); font-size: 14px; margin-bottom: 12px"
+        >
+          下面是结合孩子位次和选科，筛选出的可报院校专业组，按
+          <span style="color: var(--chong); font-weight: 600">冲</span> /
+          <span style="color: #d48806; font-weight: 600">稳</span> /
+          <span style="color: #389e0d; font-weight: 600">保</span>
+          三档分组。建议冲的少填、稳的精挑、保的留够。
+        </p>
+
+        <div id="bucketsContainer">
+          <div class="loading"><div class="spinner"></div><div style="margin-top:10px">正在匹配院校…</div></div>
+        </div>
+      </section>
+
+      <!-- 风险声明 -->
+      <div class="disclaimer">
+        <strong>⚠️ 重要提示：</strong>
+        本工具基于公开的一分一段表和整理自公开来源的院校历史数据，
+        <strong>仅供参考</strong>。院校录取数据可能存在缺失或不准确，
+        各专业组招生计划、选科要求每年都会调整。
+        <strong
+          >最终填报务必以天津考试院「志愿填报辅助系统」及各高校招生章程为准。</strong
+        >
+      </div>
+
+      <footer class="footer">
+        数据来源：天津市教育招生考试院公开一分一段表（2023–2025）<br />
+        院校数据：全量抓取全国 805 所在津招生院校、3292 个专业组（整理自公开数据）<br />
+        本工具为参考性辅助工具，不构成填报建议的最终依据。
+      </footer>
+    </div>
+
+    <script src="js/ranking.js"></script>
+    <script src="js/subject.js"></script>
+    <script src="js/matcher.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
