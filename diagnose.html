@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>诊断</title><style>
+body{font:15px/1.7 -apple-system,sans-serif;padding:20px;max-width:600px;margin:0 auto;background:#f5f7fa}
+.ok{color:#389e0d}.bad{color:#cf1322}.log{background:#fff;padding:12px;border-radius:8px;border:1px solid #e8e8e8;white-space:pre-wrap;font-family:Menlo,monospace;font-size:13px;margin-top:12px}
+h2{color:#0958d9}
+</style></head>
+<body>
+<h1>🔧 诊断页面</h1>
+<p>这个页面会自动检测应用的每一步，把结果列在下面。请把下面框里的全部内容复制发给我。</p>
+<div class="log" id="out">正在诊断…</div>
+<script>
+var logs = [];
+function log(msg, type){ logs.push((type==='bad'?'❌ ':type==='ok'?'✅ ':'➡️ ')+msg); document.getElementById('out').textContent = logs.join('\n'); }
+window.TJ = window.TJ || {};
+(async function(){
+  try {
+    log('开始诊断...');
+    // 1. 检查 fetch
+    log('1. 检查 fetch: ' + (typeof fetch));
+    if (typeof fetch === 'undefined') { log('fetch 不存在！浏览器太旧', 'bad'); return; }
+    log('fetch 可用', 'ok');
+
+    // 2. 加载一分一段表
+    log('2. 加载 2025 一分一段表...');
+    var r = await fetch('data/score_rank/tianjin_2025.json');
+    log('   HTTP状态: ' + r.status);
+    if(!r.ok){ log('一分一段表加载失败', 'bad'); return; }
+    var d2025 = await r.json();
+    log('   加载成功，' + d2025.rows.length + ' 行数据', 'ok');
+
+    // 3. 加载院校数据
+    log('3. 加载院校数据 colleges.json...');
+    var r2 = await fetch('data/colleges/colleges.json');
+    log('   HTTP状态: ' + r2.status);
+    if(!r2.ok){ log('院校数据加载失败', 'bad'); return; }
+    var colleges = await r2.json();
+    log('   加载成功，' + colleges.length + ' 个专业组', 'ok');
+
+    // 4. 加载算法JS（手动eval，因为诊断页独立）
+    log('4. 加载算法模块...');
+    var s1 = await (await fetch('js/ranking.js?v=3')).text();
+    var s2 = await (await fetch('js/subject.js?v=3')).text();
+    var s3 = await (await fetch('js/matcher.js?v=3')).text();
+    eval(s1); eval(s2); eval(s3);
+    log('   算法模块加载成功', 'ok');
+
+    // 5. 测试核心计算（模拟分数620）
+    log('5. 测试计算：620分...');
+    var conv = await TJ.Ranking.convert(2025, 620, [2024, 2023]);
+    log('   位次: ' + conv.rank + ' (应为8532)', conv.rank===8532?'ok':'bad');
+
+    var filtered = colleges.filter(function(g){
+      return TJ.Subject.satisfies(['phy','chem','bio'], TJ.Subject.parseRequirement(g.subjectReq));
+    });
+    var buckets = TJ.Matcher.match(conv.rank, filtered, {preferYears:['2024','2023']});
+    log('   冲:'+buckets.chong.length+' 稳:'+buckets.wen.length+' 保:'+buckets.bao.length, 'ok');
+
+    log('\n=== 诊断完成：所有环节正常 ===', 'ok');
+    log('如果你在主页面仍报错，请把这整段发给我，并告诉我你输入的分数。');
+  } catch(e) {
+    log('出错：' + e.message, 'bad');
+    log('错误堆栈：' + (e.stack||'').split('\n').slice(0,3).join(' | '), 'bad');
+  }
+})();
+</script>
+</body></html>
