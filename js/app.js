@@ -27,17 +27,22 @@
   const matchCard = document.getElementById("matchCard");
   const bucketsContainer = document.getElementById("bucketsContainer");
 
-  // 选科交互
-  const subjectChips = subjectGrid.querySelectorAll(".subject-chip");
+  // 选科交互：用 button + data-code，点击切换选中态
+  const subjectChips = Array.from(
+    document.querySelectorAll("#subjectGrid .subject-chip")
+  );
   let selectedSubs = [];
 
   function updateSubjectUI() {
-    selectedSubs = Array.from(subjectGrid.querySelectorAll("input:checked")).map(
-      (i) => i.value
-    );
+    const selectedSet = new Set(selectedSubs);
+    const full = selectedSubs.length >= 3;
     subjectChips.forEach((chip) => {
-      const cb = chip.querySelector("input");
-      chip.classList.toggle("selected", cb.checked);
+      const code = chip.dataset.code;
+      const isOn = selectedSet.has(code);
+      chip.classList.toggle("selected", isOn);
+      // 选满 3 个后，未选的禁用（变灰），已选的仍可点（用于取消）
+      chip.disabled = full && !isOn;
+      chip.setAttribute("aria-pressed", isOn ? "true" : "false");
     });
     const n = selectedSubs.length;
     subjectCount.textContent = `已选 ${n} / 3`;
@@ -47,26 +52,29 @@
     validateForm();
   }
 
+  function toggleSubject(code) {
+    const idx = selectedSubs.indexOf(code);
+    if (idx === -1) {
+      // 选中：最多 3 个
+      if (selectedSubs.length >= 3) return;
+      selectedSubs.push(code);
+    } else {
+      // 取消选中：随时可以
+      selectedSubs.splice(idx, 1);
+    }
+    updateSubjectUI();
+  }
+
+  subjectChips.forEach((chip) => {
+    chip.addEventListener("click", () => toggleSubject(chip.dataset.code));
+  });
+
   function validateForm() {
     const score = parseInt(scoreInput.value, 10);
     const scoreOk = score >= 300 && score <= 750;
     const subjOk = selectedSubs.length === 3;
     submitBtn.disabled = !(scoreOk && subjOk);
   }
-
-  subjectChips.forEach((chip) => {
-    chip.addEventListener("click", (e) => {
-      // label 包 input，click 会冒泡；这里手动限制最多选 3 个
-      const cb = chip.querySelector("input");
-      if (!cb.checked && selectedSubs.length >= 3) {
-        e.preventDefault();
-        subjectCount.classList.add("warn");
-        return;
-      }
-      // 让 checkbox 状态由默认行为切换
-      setTimeout(updateSubjectUI, 0);
-    });
-  });
 
   scoreInput.addEventListener("input", validateForm);
 
@@ -75,7 +83,16 @@
 
   async function run() {
     const score = parseInt(scoreInput.value, 10);
-    if (!(score >= 300 && score <= 750) || selectedSubs.length !== 3) return;
+    // 友好提示，避免静默 return 造成"点了没反应"
+    if (isNaN(score) || score < 300 || score > 750) {
+      alert("请先输入有效分数（300 ~ 750 分）");
+      scoreInput.focus();
+      return;
+    }
+    if (selectedSubs.length !== 3) {
+      alert("请勾选 3 门选考科目（当前选了 " + selectedSubs.length + " 门）");
+      return;
+    }
     submitBtn.disabled = true;
     submitBtn.textContent = "正在计算…";
 
