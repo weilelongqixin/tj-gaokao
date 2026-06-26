@@ -95,9 +95,33 @@ TJ.Matcher = (function () {
     buckets.wen.sort((a, b) => a.ratio - b.ratio);
     // 保：ratio 从小到大（录取位次最接近考生、刚好擦边保住的优先；
     //     而非把分差极大的兜底校排最前——那些没参考价值）
-    buckets.bao.sort((a, b) => a.ratio - b.ratio);
+    //     在此基础上，天津本地和京津冀院校优先（离家近、招生计划多，家长更愿填）
+    buckets.bao.sort((a, b) => {
+      const ra = regionPriority(a.record.location);
+      const rb = regionPriority(b.record.location);
+      if (ra !== rb) return ra - rb; // 地域优先级不同：天津>京津冀>其他
+      return a.ratio - b.ratio; // 同地域内：擦边保底优先
+    });
 
     return buckets;
+  }
+
+  // 地域优先级：天津本地=0，京津冀=1，其他=2
+  // 数值越小排越前。天津家长最关心本地和周边院校。
+  function regionPriority(location) {
+    if (!location) return 2;
+    const loc = String(location);
+    // 天津本地
+    if (loc.indexOf("天津") !== -1) return 0;
+    // 京津冀（北京 + 河北主要城市）
+    const jingjinji = [
+      "北京", "石家庄", "唐山", "保定", "廊坊", "秦皇岛",
+      "沧州", "邯郸", "邢台", "张家口", "承德", "衡水",
+    ];
+    for (const city of jingjinji) {
+      if (loc.indexOf(city) !== -1) return 1;
+    }
+    return 2;
   }
 
   // 把档位标签转中文
