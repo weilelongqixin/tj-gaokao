@@ -1,72 +1,54 @@
-// gate.js — 密码门
+// gate.js — 密码门（明文比对，简单可靠）
 //
-// 原理：密码不明文写在代码里，而是存它的 SHA-256 哈希。
-//      用户输入密码 → 算哈希 → 和预设哈希比对 → 一致则放行。
-//      这样别人查看网页源码也看不到密码本身。
-//
-// 修改密码方法：
-//   1. 在浏览器控制台执行：async()=>console.log(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('你的新密码')))...
-//      或更简单：访问 https://www.duplichecker.com/sha256-encrypt.php 把新密码转成 SHA-256
-//   2. 把得到的哈希替换下面的 PASSWORD_HASH 值
-//
-// 默认密码：tj2025 （你应当改成只有你知道的密码）
+// 修改密码：直接改下面这行的值即可，无需任何计算。
+// 说明：密码写在代码里，懂技术的人查看源码能找到。
+//       但本工具用于"控制亲友访问、防止网址被陌生人随手打开"，
+//       这个安全级别足够。需要更高安全性需后端实现。
 
 (function () {
   "use strict";
 
-  // 当前密码 tj2026 的 SHA-256 哈希（hex）
-  // 如需修改密码，把新密码的 SHA-256 填到这里
-  const PASSWORD_HASH = "66a0f90657799df5bddf48e6e2822dcb3531d1bd85c5203dd68a5ea5b129c371";
-  const SESSION_KEY = "tj_gate_unlocked";
+  // ↓↓↓ 修改密码只需改这一行 ↓↓↓
+  var PASSWORD = "tj2026";
+  // ↑↑↑ 修改密码只需改这一行 ↑↑↑
 
-  async function sha256(text) {
-    const data = new TextEncoder().encode(text);
-    const buf = await crypto.subtle.digest("SHA-256", data);
-    return Array.from(new Uint8Array(buf))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-  }
+  var SESSION_KEY = "tj_gate_unlocked";
 
   function unlock() {
-    document.getElementById("gate").classList.add("hidden");
-    sessionStorage.setItem(SESSION_KEY, "1");
+    var gate = document.getElementById("gate");
+    if (gate) gate.classList.add("hidden");
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
   }
 
-  async function tryUnlock() {
-    const input = document.getElementById("gateInput");
-    const err = document.getElementById("gateErr");
-    const pwd = input.value.trim();
-    if (!pwd) {
-      err.textContent = "请输入密码";
-      return;
-    }
-    const hash = await sha256(pwd);
-    if (hash === PASSWORD_HASH) {
+  function tryUnlock() {
+    var input = document.getElementById("gateInput");
+    var err = document.getElementById("gateErr");
+    if (!input || !err) return;
+    var pwd = input.value;
+    if (!pwd) { err.textContent = "请输入密码"; return; }
+    if (pwd === PASSWORD) {
       unlock();
     } else {
-      err.textContent = "密码不正确，请重试或联系分享人";
+      err.textContent = "密码不正确，请重试";
       input.value = "";
       input.focus();
     }
   }
 
   function init() {
-    // 本会话已解锁则直接放行（关浏览器才需重输）
-    if (sessionStorage.getItem(SESSION_KEY) === "1") {
-      unlock();
-      return;
-    }
-    const btn = document.getElementById("gateBtn");
-    const input = document.getElementById("gateInput");
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === "1") { unlock(); return; }
+    } catch (e) {}
+    var btn = document.getElementById("gateBtn");
+    var input = document.getElementById("gateInput");
+    if (!btn || !input) return;
     btn.addEventListener("click", tryUnlock);
-    input.addEventListener("keydown", (e) => {
+    input.addEventListener("keydown", function (e) {
       if (e.key === "Enter") tryUnlock();
     });
-    setTimeout(() => input.focus(), 100);
+    try { input.focus(); } catch (e) {}
   }
 
-  // crypto.subtle 需要在安全上下文（https 或 localhost）下才可用。
-  // GitHub Pages 是 https，没问题。
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
