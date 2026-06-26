@@ -105,7 +105,7 @@
 
     try {
       // 1. 位次换算
-      const conv = await TJ.Ranking.convert(score, BASE_YEAR, COMPARE_YEARS);
+      const conv = await TJ.Ranking.convert(BASE_YEAR, score, COMPARE_YEARS);
       renderRank(conv, score);
 
       // 2. 加载院校 + 选科过滤 + 匹配
