@@ -185,9 +185,39 @@
     }
   }
 
+  // 缓存最近一次匹配结果，供搜索过滤使用
+  let lastBuckets = null;
+  let lastSearchTerm = "";
+
   // 渲染冲稳保分档
   function renderBuckets(buckets) {
+    lastBuckets = buckets;
+    lastSearchTerm = "";
     bucketsContainer.innerHTML = "";
+
+    // 搜索框
+    const searchWrap = document.createElement("div");
+    searchWrap.className = "search-wrap";
+    searchWrap.innerHTML =
+      '<input type="search" id="collegeSearch" class="search-input" placeholder="🔍 搜索院校名/城市/专业（如：天津、医学、计算机）" autocomplete="off" />';
+    bucketsContainer.appendChild(searchWrap);
+    const searchInput = document.getElementById("collegeSearch");
+    searchInput.addEventListener("input", function () {
+      lastSearchTerm = this.value.trim().toLowerCase();
+      renderBucketsList(lastBuckets);
+    });
+
+    renderBucketsList(buckets);
+  }
+
+  // 仅渲染列表（搜索时复用，不重建搜索框）
+  function renderBucketsList(buckets) {
+    // 移除旧的列表区域
+    const oldList = document.getElementById("bucketsList");
+    if (oldList) oldList.remove();
+
+    const listWrap = document.createElement("div");
+    listWrap.id = "bucketsList";
     const defs = [
       { key: "chong", cls: "chong", title: "冲刺院校", desc: "录取位次高于孩子，可以搏一搏" },
       { key: "wen", cls: "wen", title: "稳妥院校", desc: "录取位次与孩子接近，把握较大" },
@@ -195,16 +225,21 @@
     ];
     let total = 0;
     for (const d of defs) {
-      const list = buckets[d.key] || [];
+      const rawList = buckets[d.key] || [];
+      // 搜索过滤
+      const list = lastSearchTerm
+        ? rawList.filter((it) => matchSearch(it.record, lastSearchTerm))
+        : rawList;
       total += list.length;
       const bucket = document.createElement("div");
       bucket.className = "bucket";
       // 默认：冲刺档默认折叠（数量多），稳妥/保底默认展开
       const collapsed = d.key === "chong";
+      const showCount = lastSearchTerm ? list.length : rawList.length;
       bucket.innerHTML = `
         <div class="bucket-header ${d.cls}" role="button" tabindex="0">
           <span class="bucket-title">${d.title} <span class="bucket-desc">· ${d.desc}</span></span>
-          <span class="bucket-right"><span class="count">${list.length} 个</span><span class="collapse-arrow">${collapsed ? "▶" : "▼"}</span></span>
+          <span class="bucket-right"><span class="count">${lastSearchTerm ? list.length + "/" + rawList.length : showCount + " 个"}</span><span class="collapse-arrow">${collapsed ? "▶" : "▼"}</span></span>
         </div>
         <div class="bucket-body"></div>`;
       const body = bucket.querySelector(".bucket-body");
@@ -215,14 +250,32 @@
         header.classList.add("collapsed");
       }
       if (list.length === 0) {
-        body.innerHTML = '<div class="empty">该档暂无匹配院校</div>';
+        body.innerHTML = lastSearchTerm
+          ? '<div class="empty">没有匹配「' + escapeHtml(lastSearchTerm) + '」的院校</div>'
+          : '<div class="empty">该档暂无匹配院校</div>';
       } else {
-        for (const item of list.slice(0, 30)) {
-          body.appendChild(renderGroupCard(item, d.cls));
-        }
-        if (list.length > 30) {
-          body.innerHTML += `<div class="empty">…还有 ${list.length - 30} 个，建议缩小范围查看</div>`;
-        }
+        // 分页：初始显示 20 个，点"加载更多"追加
+        const PAGE = 20;
+        let shown = 0;
+        const renderPage = () => {
+          const end = Math.min(shown + PAGE, list.length);
+          for (let i = shown; i < end; i++) {
+            body.appendChild(renderGroupCard(list[i], d.cls));
+          }
+          shown = end;
+          // 移除旧的"加载更多"按钮
+          const oldMore = body.querySelector(".load-more");
+          if (oldMore) oldMore.remove();
+          // 还有更多则加按钮
+          if (shown < list.length) {
+            const more = document.createElement("div");
+            more.className = "load-more";
+            more.innerHTML = `<button class="btn btn-secondary">加载更多（还有 ${list.length - shown} 个）</button>`;
+            more.querySelector("button").addEventListener("click", renderPage);
+            body.appendChild(more);
+          }
+        };
+        renderPage();
       }
       // 点击 header 折叠/展开
       const toggle = function () {
@@ -237,12 +290,30 @@
           toggle();
         }
       });
-      bucketsContainer.appendChild(bucket);
+      listWrap.appendChild(bucket);
     }
+    bucketsContainer.appendChild(listWrap);
     if (total === 0) {
-      bucketsContainer.innerHTML =
-        '<div class="empty">未找到匹配的院校。可能是该分数段暂无内置数据，或选科组合限制较多。可尝试调整选科后重试。</div>';
+      listWrap.innerHTML =
+        '<div class="empty">' +
+        (lastSearchTerm
+          ? "没有匹配「" + escapeHtml(lastSearchTerm) + "」的院校"
+          : "未找到匹配的院校。可能是该分数段暂无内置数据，或选科组合限制较多。可尝试调整选科后重试。") +
+        "</div>";
     }
+  }
+
+  // 搜索匹配：校名、城市、专业、层次标签
+  function matchSearch(record, term) {
+    if (!term) return true;
+    const fields = [
+      record.college || "",
+      record.location || "",
+      record.groupName || "",
+      record.level || "",
+      record.subjectReq || "",
+    ].join(" ").toLowerCase();
+    return fields.indexOf(term) !== -1;
   }
 
   function renderGroupCard(item, bucketCls) {

@@ -88,33 +88,57 @@ TJ.Matcher = (function () {
       else if (grade === 'bao' || grade === 'bao_safe') buckets.bao.push(item);
     }
 
-    // 各档内排序——目标：让家长看到的是"最值得填"的，而非极端项。
-    // 三档统一规则：天津本地 > 京津冀 > 其他（天津家长最关心本地和周边），
-    //              同地域内再按各自的"价值优先级"排。
-    // 冲：同地域内 ratio 从大到小（越接近考生、越有可能够到的排前）
-    buckets.chong.sort((a, b) => {
-      const ra = regionPriority(a.record.location);
-      const rb = regionPriority(b.record.location);
-      if (ra !== rb) return ra - rb;
-      return b.ratio - a.ratio;
-    });
-    // 稳：同地域内 ratio 从小到大（录取位次最接近考生的优先）
-    buckets.wen.sort((a, b) => {
-      const ra = regionPriority(a.record.location);
-      const rb = regionPriority(b.record.location);
-      if (ra !== rb) return ra - rb;
-      return a.ratio - b.ratio;
-    });
-    // 保：同地域内 ratio 从小到大（录取位次最接近考生、刚好擦边保住的优先；
-    //     而非把分差极大的兜底校排最前——那些没参考价值）
-    buckets.bao.sort((a, b) => {
-      const ra = regionPriority(a.record.location);
-      const rb = regionPriority(b.record.location);
-      if (ra !== rb) return ra - rb; // 地域优先级不同：天津>京津冀>其他
-      return a.ratio - b.ratio; // 同地域内：擦边保底优先
-    });
+    // 各档内排序——综合三个维度：
+    //   1. 位次接近度（主）：越接近考生越值得填（保底不能把够不到的顶尖校排前）
+    //   2. 大学层次：985/211/双一流/C9 加分（好大学优先）
+    //   3. 地域：天津本地 > 京津冀 > 其他（本地优先）
+    // 实现：把 ratio（位次相对差）量化到桶，层次和地域作为桶内的细化排序。
+    buckets.chong.sort(makeSort("chong"));
+    buckets.wen.sort(makeSort("wen"));
+    buckets.bao.sort(makeSort("bao"));
 
     return buckets;
+  }
+
+  // 大学层次打分：分越高学校越好
+  // C9(9)>985(7)>强基(6)>211(5)>双一流(4)>教育部直属(3)>中央部委(2)>普通(0)
+  function tierScore(level) {
+    if (!level) return 0;
+    const lv = String(level);
+    if (lv.indexOf("C9") !== -1) return 9;
+    if (lv.indexOf("985") !== -1) return 7;
+    if (lv.indexOf("强基") !== -1) return 6;
+    if (lv.indexOf("211") !== -1) return 5;
+    if (lv.indexOf("双一流") !== -1) return 4;
+    if (lv.indexOf("教育部直属") !== -1) return 3;
+    if (lv.indexOf("中央部委") !== -1) return 2;
+    return 0;
+  }
+
+  // 生成排序函数：bucketType 决定位次接近方向
+  // 冲(chong)：ratio 越大（越接近考生）越好；稳/保(wen/bao)：ratio 越小（越接近）越好
+  function makeSort(bucketType) {
+    const wantHighRatio = bucketType === "chong";
+    return function (a, b) {
+      // 第一优先：把 ratio 按 5% 分桶，只在"同位次段"内比较层次和地域，
+      // 避免层次破坏冲稳保的位次意义（如保底档不会把够不到的清北排前）。
+      const bucketA = Math.floor(Math.abs(a.ratio || 0) / 0.05);
+      const bucketB = Math.floor(Math.abs(b.ratio || 0) / 0.05);
+      if (bucketA !== bucketB) {
+        // 同位次段内：稳/保倾向小 ratio（接近考生），冲倾向大 ratio（接近考生）
+        return wantHighRatio ? (b.ratio - a.ratio) : (a.ratio - b.ratio);
+      }
+      // 第二优先：大学层次（好大学排前）
+      const ta = tierScore(a.record.level);
+      const tb = tierScore(b.record.level);
+      if (ta !== tb) return tb - ta;
+      // 第三优先：地域（天津本地 > 京津冀 > 其他）
+      const ra = regionPriority(a.record.location);
+      const rb = regionPriority(b.record.location);
+      if (ra !== rb) return ra - rb;
+      // 兜底：按 ratio 精细排
+      return wantHighRatio ? (b.ratio - a.ratio) : (a.ratio - b.ratio);
+    };
   }
 
   // 地域优先级：天津本地=0，京津冀=1，其他=2
