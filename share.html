@@ -22,8 +22,6 @@ body{background:var(--bg)}
     <h2>📱 扫码使用</h2>
     <p class="sub">让亲友用手机扫下方二维码即可打开</p>
     <div id="qrcode">生成中…</div>
-    <div class="url-box" id="urlBox"></div>
-    <button class="btn copy-btn" id="copyBtn">复制网址</button>
     <div class="tip">
       让亲友用微信扫一扫即可直接打开使用
     </div>
@@ -34,7 +32,6 @@ body{background:var(--bg)}
 <script>
 (function(){
   var url = location.origin + location.pathname.replace(/share\.html$/, '');
-  document.getElementById('urlBox').textContent = url;
   // 用 qrcode-generator 生成
   try {
     var qr = qrcode(0, 'M');
@@ -44,13 +41,6 @@ body{background:var(--bg)}
   } catch(e) {
     document.getElementById('qrcode').innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(url)+'" width="200" height="200" alt="二维码">';
   }
-  document.getElementById('copyBtn').addEventListener('click', function(){
-    navigator.clipboard.writeText(url).then(function(){
-      var b=document.getElementById('copyBtn'); b.textContent='已复制 ✓'; setTimeout(function(){b.textContent='复制网址';},1500);
-    }).catch(function(){
-      prompt('请手动复制：', url);
-    });
-  });
 })();
 </script>
 </body></html>
