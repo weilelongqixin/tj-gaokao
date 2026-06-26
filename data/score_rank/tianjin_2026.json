@@ -1,0 +1,1911 @@
+{
+ "year": 2026,
+ "rows": [
+  {
+   "score": 750,
+   "score_lo": 680,
+   "count": 197,
+   "cum": 197
+  },
+  {
+   "score": 679,
+   "count": 32,
+   "cum": 229
+  },
+  {
+   "score": 678,
+   "count": 30,
+   "cum": 259
+  },
+  {
+   "score": 677,
+   "count": 25,
+   "cum": 284
+  },
+  {
+   "score": 676,
+   "count": 24,
+   "cum": 308
+  },
+  {
+   "score": 675,
+   "count": 21,
+   "cum": 329
+  },
+  {
+   "score": 674,
+   "count": 32,
+   "cum": 361
+  },
+  {
+   "score": 673,
+   "count": 25,
+   "cum": 386
+  },
+  {
+   "score": 672,
+   "count": 34,
+   "cum": 420
+  },
+  {
+   "score": 671,
+   "count": 41,
+   "cum": 461
+  },
+  {
+   "score": 670,
+   "count": 37,
+   "cum": 498
+  },
+  {
+   "score": 669,
+   "count": 37,
+   "cum": 535
+  },
+  {
+   "score": 668,
+   "count": 45,
+   "cum": 580
+  },
+  {
+   "score": 667,
+   "count": 38,
+   "cum": 618
+  },
+  {
+   "score": 666,
+   "count": 50,
+   "cum": 668
+  },
+  {
+   "score": 665,
+   "count": 44,
+   "cum": 712
+  },
+  {
+   "score": 664,
+   "count": 58,
+   "cum": 770
+  },
+  {
+   "score": 663,
+   "count": 56,
+   "cum": 826
+  },
+  {
+   "score": 662,
+   "count": 51,
+   "cum": 877
+  },
+  {
+   "score": 661,
+   "count": 66,
+   "cum": 943
+  },
+  {
+   "score": 660,
+   "count": 56,
+   "cum": 999
+  },
+  {
+   "score": 659,
+   "count": 83,
+   "cum": 1082
+  },
+  {
+   "score": 658,
+   "count": 62,
+   "cum": 1144
+  },
+  {
+   "score": 657,
+   "count": 72,
+   "cum": 1216
+  },
+  {
+   "score": 656,
+   "count": 87,
+   "cum": 1303
+  },
+  {
+   "score": 655,
+   "count": 73,
+   "cum": 1376
+  },
+  {
+   "score": 654,
+   "count": 83,
+   "cum": 1459
+  },
+  {
+   "score": 653,
+   "count": 86,
+   "cum": 1545
+  },
+  {
+   "score": 652,
+   "count": 88,
+   "cum": 1633
+  },
+  {
+   "score": 651,
+   "count": 79,
+   "cum": 1712
+  },
+  {
+   "score": 650,
+   "count": 110,
+   "cum": 1822
+  },
+  {
+   "score": 649,
+   "count": 84,
+   "cum": 1906
+  },
+  {
+   "score": 648,
+   "count": 105,
+   "cum": 2011
+  },
+  {
+   "score": 647,
+   "count": 93,
+   "cum": 2104
+  },
+  {
+   "score": 646,
+   "count": 110,
+   "cum": 2214
+  },
+  {
+   "score": 645,
+   "count": 102,
+   "cum": 2316
+  },
+  {
+   "score": 644,
+   "count": 116,
+   "cum": 2432
+  },
+  {
+   "score": 643,
+   "count": 117,
+   "cum": 2549
+  },
+  {
+   "score": 642,
+   "count": 135,
+   "cum": 2684
+  },
+  {
+   "score": 641,
+   "count": 109,
+   "cum": 2793
+  },
+  {
+   "score": 640,
+   "count": 112,
+   "cum": 2905
+  },
+  {
+   "score": 639,
+   "count": 110,
+   "cum": 3015
+  },
+  {
+   "score": 638,
+   "count": 115,
+   "cum": 3130
+  },
+  {
+   "score": 637,
+   "count": 117,
+   "cum": 3247
+  },
+  {
+   "score": 636,
+   "count": 128,
+   "cum": 3375
+  },
+  {
+   "score": 635,
+   "count": 137,
+   "cum": 3512
+  },
+  {
+   "score": 634,
+   "count": 117,
+   "cum": 3629
+  },
+  {
+   "score": 633,
+   "count": 151,
+   "cum": 3780
+  },
+  {
+   "score": 632,
+   "count": 125,
+   "cum": 3905
+  },
+  {
+   "score": 631,
+   "count": 134,
+   "cum": 4039
+  },
+  {
+   "score": 630,
+   "count": 179,
+   "cum": 4218
+  },
+  {
+   "score": 629,
+   "count": 171,
+   "cum": 4389
+  },
+  {
+   "score": 628,
+   "count": 161,
+   "cum": 4550
+  },
+  {
+   "score": 627,
+   "count": 167,
+   "cum": 4717
+  },
+  {
+   "score": 626,
+   "count": 155,
+   "cum": 4872
+  },
+  {
+   "score": 625,
+   "count": 166,
+   "cum": 5038
+  },
+  {
+   "score": 624,
+   "count": 185,
+   "cum": 5223
+  },
+  {
+   "score": 623,
+   "count": 168,
+   "cum": 5391
+  },
+  {
+   "score": 622,
+   "count": 183,
+   "cum": 5574
+  },
+  {
+   "score": 621,
+   "count": 162,
+   "cum": 5736
+  },
+  {
+   "score": 620,
+   "count": 204,
+   "cum": 5940
+  },
+  {
+   "score": 619,
+   "count": 181,
+   "cum": 6121
+  },
+  {
+   "score": 618,
+   "count": 188,
+   "cum": 6309
+  },
+  {
+   "score": 617,
+   "count": 162,
+   "cum": 6471
+  },
+  {
+   "score": 616,
+   "count": 227,
+   "cum": 6698
+  },
+  {
+   "score": 615,
+   "count": 189,
+   "cum": 6887
+  },
+  {
+   "score": 614,
+   "count": 225,
+   "cum": 7112
+  },
+  {
+   "score": 613,
+   "count": 170,
+   "cum": 7282
+  },
+  {
+   "score": 612,
+   "count": 222,
+   "cum": 7504
+  },
+  {
+   "score": 611,
+   "count": 191,
+   "cum": 7695
+  },
+  {
+   "score": 610,
+   "count": 191,
+   "cum": 7886
+  },
+  {
+   "score": 609,
+   "count": 195,
+   "cum": 8081
+  },
+  {
+   "score": 608,
+   "count": 194,
+   "cum": 8275
+  },
+  {
+   "score": 607,
+   "count": 217,
+   "cum": 8492
+  },
+  {
+   "score": 606,
+   "count": 210,
+   "cum": 8702
+  },
+  {
+   "score": 605,
+   "count": 203,
+   "cum": 8905
+  },
+  {
+   "score": 604,
+   "count": 247,
+   "cum": 9152
+  },
+  {
+   "score": 603,
+   "count": 233,
+   "cum": 9385
+  },
+  {
+   "score": 602,
+   "count": 236,
+   "cum": 9621
+  },
+  {
+   "score": 601,
+   "count": 230,
+   "cum": 9851
+  },
+  {
+   "score": 600,
+   "count": 226,
+   "cum": 10077
+  },
+  {
+   "score": 599,
+   "count": 243,
+   "cum": 10320
+  },
+  {
+   "score": 598,
+   "count": 215,
+   "cum": 10535
+  },
+  {
+   "score": 597,
+   "count": 235,
+   "cum": 10770
+  },
+  {
+   "score": 596,
+   "count": 212,
+   "cum": 10982
+  },
+  {
+   "score": 595,
+   "count": 231,
+   "cum": 11213
+  },
+  {
+   "score": 594,
+   "count": 205,
+   "cum": 11418
+  },
+  {
+   "score": 593,
+   "count": 277,
+   "cum": 11695
+  },
+  {
+   "score": 592,
+   "count": 272,
+   "cum": 11967
+  },
+  {
+   "score": 591,
+   "count": 251,
+   "cum": 12218
+  },
+  {
+   "score": 590,
+   "count": 231,
+   "cum": 12449
+  },
+  {
+   "score": 589,
+   "count": 261,
+   "cum": 12710
+  },
+  {
+   "score": 588,
+   "count": 242,
+   "cum": 12952
+  },
+  {
+   "score": 587,
+   "count": 257,
+   "cum": 13209
+  },
+  {
+   "score": 586,
+   "count": 276,
+   "cum": 13485
+  },
+  {
+   "score": 585,
+   "count": 276,
+   "cum": 13761
+  },
+  {
+   "score": 584,
+   "count": 261,
+   "cum": 14022
+  },
+  {
+   "score": 583,
+   "count": 296,
+   "cum": 14318
+  },
+  {
+   "score": 582,
+   "count": 244,
+   "cum": 14562
+  },
+  {
+   "score": 581,
+   "count": 260,
+   "cum": 14822
+  },
+  {
+   "score": 580,
+   "count": 261,
+   "cum": 15083
+  },
+  {
+   "score": 579,
+   "count": 273,
+   "cum": 15356
+  },
+  {
+   "score": 578,
+   "count": 283,
+   "cum": 15639
+  },
+  {
+   "score": 577,
+   "count": 240,
+   "cum": 15879
+  },
+  {
+   "score": 576,
+   "count": 299,
+   "cum": 16178
+  },
+  {
+   "score": 575,
+   "count": 274,
+   "cum": 16452
+  },
+  {
+   "score": 574,
+   "count": 276,
+   "cum": 16728
+  },
+  {
+   "score": 573,
+   "count": 261,
+   "cum": 16989
+  },
+  {
+   "score": 572,
+   "count": 278,
+   "cum": 17267
+  },
+  {
+   "score": 571,
+   "count": 261,
+   "cum": 17528
+  },
+  {
+   "score": 570,
+   "count": 286,
+   "cum": 17814
+  },
+  {
+   "score": 569,
+   "count": 271,
+   "cum": 18085
+  },
+  {
+   "score": 568,
+   "count": 259,
+   "cum": 18344
+  },
+  {
+   "score": 567,
+   "count": 285,
+   "cum": 18629
+  },
+  {
+   "score": 566,
+   "count": 282,
+   "cum": 18911
+  },
+  {
+   "score": 565,
+   "count": 282,
+   "cum": 19193
+  },
+  {
+   "score": 564,
+   "count": 303,
+   "cum": 19496
+  },
+  {
+   "score": 563,
+   "count": 262,
+   "cum": 19758
+  },
+  {
+   "score": 562,
+   "count": 282,
+   "cum": 20040
+  },
+  {
+   "score": 561,
+   "count": 271,
+   "cum": 20311
+  },
+  {
+   "score": 560,
+   "count": 268,
+   "cum": 20579
+  },
+  {
+   "score": 559,
+   "count": 280,
+   "cum": 20859
+  },
+  {
+   "score": 558,
+   "count": 278,
+   "cum": 21137
+  },
+  {
+   "score": 557,
+   "count": 306,
+   "cum": 21443
+  },
+  {
+   "score": 556,
+   "count": 298,
+   "cum": 21741
+  },
+  {
+   "score": 555,
+   "count": 292,
+   "cum": 22033
+  },
+  {
+   "score": 554,
+   "count": 272,
+   "cum": 22305
+  },
+  {
+   "score": 553,
+   "count": 316,
+   "cum": 22621
+  },
+  {
+   "score": 552,
+   "count": 276,
+   "cum": 22897
+  },
+  {
+   "score": 551,
+   "count": 288,
+   "cum": 23185
+  },
+  {
+   "score": 550,
+   "count": 306,
+   "cum": 23491
+  },
+  {
+   "score": 549,
+   "count": 277,
+   "cum": 23768
+  },
+  {
+   "score": 548,
+   "count": 315,
+   "cum": 24083
+  },
+  {
+   "score": 547,
+   "count": 287,
+   "cum": 24370
+  },
+  {
+   "score": 546,
+   "count": 276,
+   "cum": 24646
+  },
+  {
+   "score": 545,
+   "count": 306,
+   "cum": 24952
+  },
+  {
+   "score": 544,
+   "count": 307,
+   "cum": 25259
+  },
+  {
+   "score": 543,
+   "count": 315,
+   "cum": 25574
+  },
+  {
+   "score": 542,
+   "count": 315,
+   "cum": 25889
+  },
+  {
+   "score": 541,
+   "count": 309,
+   "cum": 26198
+  },
+  {
+   "score": 540,
+   "count": 304,
+   "cum": 26502
+  },
+  {
+   "score": 539,
+   "count": 306,
+   "cum": 26808
+  },
+  {
+   "score": 538,
+   "count": 306,
+   "cum": 27114
+  },
+  {
+   "score": 537,
+   "count": 304,
+   "cum": 27418
+  },
+  {
+   "score": 536,
+   "count": 295,
+   "cum": 27713
+  },
+  {
+   "score": 535,
+   "count": 294,
+   "cum": 28007
+  },
+  {
+   "score": 534,
+   "count": 324,
+   "cum": 28331
+  },
+  {
+   "score": 533,
+   "count": 301,
+   "cum": 28632
+  },
+  {
+   "score": 532,
+   "count": 309,
+   "cum": 28941
+  },
+  {
+   "score": 531,
+   "count": 296,
+   "cum": 29237
+  },
+  {
+   "score": 530,
+   "count": 325,
+   "cum": 29562
+  },
+  {
+   "score": 529,
+   "count": 300,
+   "cum": 29862
+  },
+  {
+   "score": 528,
+   "count": 332,
+   "cum": 30194
+  },
+  {
+   "score": 527,
+   "count": 313,
+   "cum": 30507
+  },
+  {
+   "score": 526,
+   "count": 319,
+   "cum": 30826
+  },
+  {
+   "score": 525,
+   "count": 283,
+   "cum": 31109
+  },
+  {
+   "score": 524,
+   "count": 335,
+   "cum": 31444
+  },
+  {
+   "score": 523,
+   "count": 328,
+   "cum": 31772
+  },
+  {
+   "score": 522,
+   "count": 334,
+   "cum": 32106
+  },
+  {
+   "score": 521,
+   "count": 310,
+   "cum": 32416
+  },
+  {
+   "score": 520,
+   "count": 302,
+   "cum": 32718
+  },
+  {
+   "score": 519,
+   "count": 308,
+   "cum": 33026
+  },
+  {
+   "score": 518,
+   "count": 319,
+   "cum": 33345
+  },
+  {
+   "score": 517,
+   "count": 320,
+   "cum": 33665
+  },
+  {
+   "score": 516,
+   "count": 307,
+   "cum": 33972
+  },
+  {
+   "score": 515,
+   "count": 337,
+   "cum": 34309
+  },
+  {
+   "score": 514,
+   "count": 332,
+   "cum": 34641
+  },
+  {
+   "score": 513,
+   "count": 361,
+   "cum": 35002
+  },
+  {
+   "score": 512,
+   "count": 322,
+   "cum": 35324
+  },
+  {
+   "score": 511,
+   "count": 306,
+   "cum": 35630
+  },
+  {
+   "score": 510,
+   "count": 306,
+   "cum": 35936
+  },
+  {
+   "score": 509,
+   "count": 320,
+   "cum": 36256
+  },
+  {
+   "score": 508,
+   "count": 338,
+   "cum": 36594
+  },
+  {
+   "score": 507,
+   "count": 341,
+   "cum": 36935
+  },
+  {
+   "score": 506,
+   "count": 314,
+   "cum": 37249
+  },
+  {
+   "score": 505,
+   "count": 307,
+   "cum": 37556
+  },
+  {
+   "score": 504,
+   "count": 313,
+   "cum": 37869
+  },
+  {
+   "score": 503,
+   "count": 316,
+   "cum": 38185
+  },
+  {
+   "score": 502,
+   "count": 343,
+   "cum": 38528
+  },
+  {
+   "score": 501,
+   "count": 348,
+   "cum": 38876
+  },
+  {
+   "score": 500,
+   "count": 356,
+   "cum": 39232
+  },
+  {
+   "score": 499,
+   "count": 305,
+   "cum": 39537
+  },
+  {
+   "score": 498,
+   "count": 340,
+   "cum": 39877
+  },
+  {
+   "score": 497,
+   "count": 319,
+   "cum": 40196
+  },
+  {
+   "score": 496,
+   "count": 347,
+   "cum": 40543
+  },
+  {
+   "score": 495,
+   "count": 338,
+   "cum": 40881
+  },
+  {
+   "score": 494,
+   "count": 337,
+   "cum": 41218
+  },
+  {
+   "score": 493,
+   "count": 301,
+   "cum": 41519
+  },
+  {
+   "score": 492,
+   "count": 336,
+   "cum": 41855
+  },
+  {
+   "score": 491,
+   "count": 344,
+   "cum": 42199
+  },
+  {
+   "score": 490,
+   "count": 326,
+   "cum": 42525
+  },
+  {
+   "score": 489,
+   "count": 317,
+   "cum": 42842
+  },
+  {
+   "score": 488,
+   "count": 314,
+   "cum": 43156
+  },
+  {
+   "score": 487,
+   "count": 348,
+   "cum": 43504
+  },
+  {
+   "score": 486,
+   "count": 345,
+   "cum": 43849
+  },
+  {
+   "score": 485,
+   "count": 306,
+   "cum": 44155
+  },
+  {
+   "score": 484,
+   "count": 372,
+   "cum": 44527
+  },
+  {
+   "score": 483,
+   "count": 312,
+   "cum": 44839
+  },
+  {
+   "score": 482,
+   "count": 347,
+   "cum": 45186
+  },
+  {
+   "score": 481,
+   "count": 307,
+   "cum": 45493
+  },
+  {
+   "score": 480,
+   "count": 336,
+   "cum": 45829
+  },
+  {
+   "score": 479,
+   "count": 310,
+   "cum": 46139
+  },
+  {
+   "score": 478,
+   "count": 276,
+   "cum": 46415
+  },
+  {
+   "score": 477,
+   "count": 304,
+   "cum": 46719
+  },
+  {
+   "score": 476,
+   "count": 337,
+   "cum": 47056
+  },
+  {
+   "score": 475,
+   "count": 326,
+   "cum": 47382
+  },
+  {
+   "score": 474,
+   "count": 335,
+   "cum": 47717
+  },
+  {
+   "score": 473,
+   "count": 320,
+   "cum": 48037
+  },
+  {
+   "score": 472,
+   "count": 324,
+   "cum": 48361
+  },
+  {
+   "score": 471,
+   "count": 293,
+   "cum": 48654
+  },
+  {
+   "score": 470,
+   "count": 312,
+   "cum": 48966
+  },
+  {
+   "score": 469,
+   "count": 301,
+   "cum": 49267
+  },
+  {
+   "score": 468,
+   "count": 290,
+   "cum": 49557
+  },
+  {
+   "score": 467,
+   "count": 311,
+   "cum": 49868
+  },
+  {
+   "score": 466,
+   "count": 334,
+   "cum": 50202
+  },
+  {
+   "score": 465,
+   "count": 309,
+   "cum": 50511
+  },
+  {
+   "score": 464,
+   "count": 329,
+   "cum": 50840
+  },
+  {
+   "score": 463,
+   "count": 312,
+   "cum": 51152
+  },
+  {
+   "score": 462,
+   "count": 326,
+   "cum": 51478
+  },
+  {
+   "score": 461,
+   "count": 333,
+   "cum": 51811
+  },
+  {
+   "score": 460,
+   "count": 308,
+   "cum": 52119
+  },
+  {
+   "score": 459,
+   "count": 303,
+   "cum": 52422
+  },
+  {
+   "score": 458,
+   "count": 331,
+   "cum": 52753
+  },
+  {
+   "score": 457,
+   "count": 313,
+   "cum": 53066
+  },
+  {
+   "score": 456,
+   "count": 299,
+   "cum": 53365
+  },
+  {
+   "score": 455,
+   "count": 307,
+   "cum": 53672
+  },
+  {
+   "score": 454,
+   "count": 248,
+   "cum": 53920
+  },
+  {
+   "score": 453,
+   "count": 281,
+   "cum": 54201
+  },
+  {
+   "score": 452,
+   "count": 291,
+   "cum": 54492
+  },
+  {
+   "score": 451,
+   "count": 313,
+   "cum": 54805
+  },
+  {
+   "score": 450,
+   "count": 303,
+   "cum": 55108
+  },
+  {
+   "score": 449,
+   "count": 284,
+   "cum": 55392
+  },
+  {
+   "score": 448,
+   "count": 270,
+   "cum": 55662
+  },
+  {
+   "score": 447,
+   "count": 269,
+   "cum": 55931
+  },
+  {
+   "score": 446,
+   "count": 318,
+   "cum": 56249
+  },
+  {
+   "score": 445,
+   "count": 253,
+   "cum": 56502
+  },
+  {
+   "score": 444,
+   "count": 279,
+   "cum": 56781
+  },
+  {
+   "score": 443,
+   "count": 266,
+   "cum": 57047
+  },
+  {
+   "score": 442,
+   "count": 299,
+   "cum": 57346
+  },
+  {
+   "score": 441,
+   "count": 286,
+   "cum": 57632
+  },
+  {
+   "score": 440,
+   "count": 315,
+   "cum": 57947
+  },
+  {
+   "score": 439,
+   "count": 296,
+   "cum": 58243
+  },
+  {
+   "score": 438,
+   "count": 257,
+   "cum": 58500
+  },
+  {
+   "score": 437,
+   "count": 269,
+   "cum": 58769
+  },
+  {
+   "score": 436,
+   "count": 296,
+   "cum": 59065
+  },
+  {
+   "score": 435,
+   "count": 243,
+   "cum": 59308
+  },
+  {
+   "score": 434,
+   "count": 253,
+   "cum": 59561
+  },
+  {
+   "score": 433,
+   "count": 271,
+   "cum": 59832
+  },
+  {
+   "score": 432,
+   "count": 262,
+   "cum": 60094
+  },
+  {
+   "score": 431,
+   "count": 256,
+   "cum": 60350
+  },
+  {
+   "score": 430,
+   "count": 247,
+   "cum": 60597
+  },
+  {
+   "score": 429,
+   "count": 244,
+   "cum": 60841
+  },
+  {
+   "score": 428,
+   "count": 288,
+   "cum": 61129
+  },
+  {
+   "score": 427,
+   "count": 248,
+   "cum": 61377
+  },
+  {
+   "score": 426,
+   "count": 239,
+   "cum": 61616
+  },
+  {
+   "score": 425,
+   "count": 265,
+   "cum": 61881
+  },
+  {
+   "score": 424,
+   "count": 230,
+   "cum": 62111
+  },
+  {
+   "score": 423,
+   "count": 255,
+   "cum": 62366
+  },
+  {
+   "score": 422,
+   "count": 256,
+   "cum": 62622
+  },
+  {
+   "score": 421,
+   "count": 258,
+   "cum": 62880
+  },
+  {
+   "score": 420,
+   "count": 216,
+   "cum": 63096
+  },
+  {
+   "score": 419,
+   "count": 225,
+   "cum": 63321
+  },
+  {
+   "score": 418,
+   "count": 225,
+   "cum": 63546
+  },
+  {
+   "score": 417,
+   "count": 233,
+   "cum": 63779
+  },
+  {
+   "score": 416,
+   "count": 193,
+   "cum": 63972
+  },
+  {
+   "score": 415,
+   "count": 251,
+   "cum": 64223
+  },
+  {
+   "score": 414,
+   "count": 219,
+   "cum": 64442
+  },
+  {
+   "score": 413,
+   "count": 216,
+   "cum": 64658
+  },
+  {
+   "score": 412,
+   "count": 196,
+   "cum": 64854
+  },
+  {
+   "score": 411,
+   "count": 210,
+   "cum": 65064
+  },
+  {
+   "score": 410,
+   "count": 187,
+   "cum": 65251
+  },
+  {
+   "score": 409,
+   "count": 241,
+   "cum": 65492
+  },
+  {
+   "score": 408,
+   "count": 221,
+   "cum": 65713
+  },
+  {
+   "score": 407,
+   "count": 198,
+   "cum": 65911
+  },
+  {
+   "score": 406,
+   "count": 198,
+   "cum": 66109
+  },
+  {
+   "score": 405,
+   "count": 195,
+   "cum": 66304
+  },
+  {
+   "score": 404,
+   "count": 229,
+   "cum": 66533
+  },
+  {
+   "score": 403,
+   "count": 179,
+   "cum": 66712
+  },
+  {
+   "score": 402,
+   "count": 200,
+   "cum": 66912
+  },
+  {
+   "score": 401,
+   "count": 209,
+   "cum": 67121
+  },
+  {
+   "score": 400,
+   "count": 179,
+   "cum": 67300
+  },
+  {
+   "score": 399,
+   "count": 187,
+   "cum": 67487
+  },
+  {
+   "score": 398,
+   "count": 182,
+   "cum": 67669
+  },
+  {
+   "score": 397,
+   "count": 199,
+   "cum": 67868
+  },
+  {
+   "score": 396,
+   "count": 168,
+   "cum": 68036
+  },
+  {
+   "score": 395,
+   "count": 203,
+   "cum": 68239
+  },
+  {
+   "score": 394,
+   "count": 187,
+   "cum": 68426
+  },
+  {
+   "score": 393,
+   "count": 176,
+   "cum": 68602
+  },
+  {
+   "score": 392,
+   "count": 185,
+   "cum": 68787
+  },
+  {
+   "score": 391,
+   "count": 173,
+   "cum": 68960
+  },
+  {
+   "score": 390,
+   "count": 145,
+   "cum": 69105
+  },
+  {
+   "score": 389,
+   "count": 175,
+   "cum": 69280
+  },
+  {
+   "score": 388,
+   "count": 165,
+   "cum": 69445
+  },
+  {
+   "score": 387,
+   "count": 168,
+   "cum": 69613
+  },
+  {
+   "score": 386,
+   "count": 174,
+   "cum": 69787
+  },
+  {
+   "score": 385,
+   "count": 178,
+   "cum": 69965
+  },
+  {
+   "score": 384,
+   "count": 146,
+   "cum": 70111
+  },
+  {
+   "score": 383,
+   "count": 147,
+   "cum": 70258
+  },
+  {
+   "score": 382,
+   "count": 149,
+   "cum": 70407
+  },
+  {
+   "score": 381,
+   "count": 141,
+   "cum": 70548
+  },
+  {
+   "score": 380,
+   "count": 166,
+   "cum": 70714
+  },
+  {
+   "score": 379,
+   "count": 156,
+   "cum": 70870
+  },
+  {
+   "score": 378,
+   "count": 128,
+   "cum": 70998
+  },
+  {
+   "score": 377,
+   "count": 136,
+   "cum": 71134
+  },
+  {
+   "score": 376,
+   "count": 155,
+   "cum": 71289
+  },
+  {
+   "score": 375,
+   "count": 135,
+   "cum": 71424
+  },
+  {
+   "score": 374,
+   "count": 124,
+   "cum": 71548
+  },
+  {
+   "score": 373,
+   "count": 130,
+   "cum": 71678
+  },
+  {
+   "score": 372,
+   "count": 135,
+   "cum": 71813
+  },
+  {
+   "score": 371,
+   "count": 116,
+   "cum": 71929
+  },
+  {
+   "score": 370,
+   "count": 142,
+   "cum": 72071
+  },
+  {
+   "score": 369,
+   "count": 140,
+   "cum": 72211
+  },
+  {
+   "score": 368,
+   "count": 120,
+   "cum": 72331
+  },
+  {
+   "score": 367,
+   "count": 122,
+   "cum": 72453
+  },
+  {
+   "score": 366,
+   "count": 121,
+   "cum": 72574
+  },
+  {
+   "score": 365,
+   "count": 136,
+   "cum": 72710
+  },
+  {
+   "score": 364,
+   "count": 104,
+   "cum": 72814
+  },
+  {
+   "score": 363,
+   "count": 120,
+   "cum": 72934
+  },
+  {
+   "score": 362,
+   "count": 107,
+   "cum": 73041
+  },
+  {
+   "score": 361,
+   "count": 117,
+   "cum": 73158
+  },
+  {
+   "score": 360,
+   "count": 114,
+   "cum": 73272
+  },
+  {
+   "score": 359,
+   "count": 127,
+   "cum": 73399
+  },
+  {
+   "score": 358,
+   "count": 91,
+   "cum": 73490
+  },
+  {
+   "score": 357,
+   "count": 99,
+   "cum": 73589
+  },
+  {
+   "score": 356,
+   "count": 107,
+   "cum": 73696
+  },
+  {
+   "score": 355,
+   "count": 111,
+   "cum": 73807
+  },
+  {
+   "score": 354,
+   "count": 98,
+   "cum": 73905
+  },
+  {
+   "score": 353,
+   "count": 106,
+   "cum": 74011
+  },
+  {
+   "score": 352,
+   "count": 99,
+   "cum": 74110
+  },
+  {
+   "score": 351,
+   "count": 85,
+   "cum": 74195
+  },
+  {
+   "score": 350,
+   "count": 83,
+   "cum": 74278
+  },
+  {
+   "score": 349,
+   "count": 106,
+   "cum": 74384
+  },
+  {
+   "score": 348,
+   "count": 85,
+   "cum": 74469
+  },
+  {
+   "score": 347,
+   "count": 92,
+   "cum": 74561
+  },
+  {
+   "score": 346,
+   "count": 92,
+   "cum": 74653
+  },
+  {
+   "score": 345,
+   "count": 79,
+   "cum": 74732
+  },
+  {
+   "score": 344,
+   "count": 86,
+   "cum": 74818
+  },
+  {
+   "score": 343,
+   "count": 75,
+   "cum": 74893
+  },
+  {
+   "score": 342,
+   "count": 70,
+   "cum": 74963
+  },
+  {
+   "score": 341,
+   "count": 88,
+   "cum": 75051
+  },
+  {
+   "score": 340,
+   "count": 78,
+   "cum": 75129
+  },
+  {
+   "score": 339,
+   "count": 78,
+   "cum": 75207
+  },
+  {
+   "score": 338,
+   "count": 75,
+   "cum": 75282
+  },
+  {
+   "score": 337,
+   "count": 72,
+   "cum": 75354
+  },
+  {
+   "score": 336,
+   "count": 65,
+   "cum": 75419
+  },
+  {
+   "score": 335,
+   "count": 85,
+   "cum": 75504
+  },
+  {
+   "score": 334,
+   "count": 65,
+   "cum": 75569
+  },
+  {
+   "score": 333,
+   "count": 69,
+   "cum": 75638
+  },
+  {
+   "score": 332,
+   "count": 72,
+   "cum": 75710
+  },
+  {
+   "score": 331,
+   "count": 72,
+   "cum": 75782
+  },
+  {
+   "score": 330,
+   "count": 60,
+   "cum": 75842
+  },
+  {
+   "score": 329,
+   "count": 72,
+   "cum": 75914
+  },
+  {
+   "score": 328,
+   "count": 63,
+   "cum": 75977
+  },
+  {
+   "score": 327,
+   "count": 63,
+   "cum": 76040
+  },
+  {
+   "score": 326,
+   "count": 68,
+   "cum": 76108
+  },
+  {
+   "score": 325,
+   "count": 57,
+   "cum": 76165
+  },
+  {
+   "score": 324,
+   "count": 68,
+   "cum": 76233
+  },
+  {
+   "score": 323,
+   "count": 69,
+   "cum": 76302
+  },
+  {
+   "score": 322,
+   "count": 51,
+   "cum": 76353
+  },
+  {
+   "score": 321,
+   "count": 65,
+   "cum": 76418
+  },
+  {
+   "score": 320,
+   "count": 49,
+   "cum": 76467
+  },
+  {
+   "score": 319,
+   "count": 62,
+   "cum": 76529
+  },
+  {
+   "score": 318,
+   "count": 55,
+   "cum": 76584
+  },
+  {
+   "score": 317,
+   "count": 50,
+   "cum": 76634
+  },
+  {
+   "score": 316,
+   "count": 56,
+   "cum": 76690
+  },
+  {
+   "score": 315,
+   "count": 59,
+   "cum": 76749
+  },
+  {
+   "score": 314,
+   "count": 53,
+   "cum": 76802
+  },
+  {
+   "score": 313,
+   "count": 64,
+   "cum": 76866
+  },
+  {
+   "score": 312,
+   "count": 52,
+   "cum": 76918
+  },
+  {
+   "score": 311,
+   "count": 56,
+   "cum": 76974
+  },
+  {
+   "score": 310,
+   "count": 56,
+   "cum": 77030
+  },
+  {
+   "score": 309,
+   "count": 52,
+   "cum": 77082
+  },
+  {
+   "score": 308,
+   "count": 36,
+   "cum": 77118
+  },
+  {
+   "score": 307,
+   "count": 49,
+   "cum": 77167
+  },
+  {
+   "score": 306,
+   "count": 40,
+   "cum": 77207
+  },
+  {
+   "score": 305,
+   "count": 48,
+   "cum": 77255
+  },
+  {
+   "score": 304,
+   "count": 40,
+   "cum": 77295
+  },
+  {
+   "score": 303,
+   "count": 47,
+   "cum": 77342
+  },
+  {
+   "score": 302,
+   "count": 55,
+   "cum": 77397
+  },
+  {
+   "score": 301,
+   "count": 43,
+   "cum": 77440
+  },
+  {
+   "score": 300,
+   "count": 48,
+   "cum": 77488
+  }
+ ]
+}

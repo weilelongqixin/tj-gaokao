@@ -52,7 +52,7 @@ def main():
         level = sch.get("level") or ""
         hist = sch.get("hist") or {}
         merged = {}
-        for y in ["2023", "2024"]:
+        for y in ["2023", "2024", "2025"]:
             ydata = hist.get(y)
             if not isinstance(ydata, dict):
                 continue
@@ -89,23 +89,23 @@ def main():
             }
             out.append(rec)
     def sort_key(r):
-        h = r["hist"].get("2024") or r["hist"].get("2023") or {}
+        h = r["hist"].get("2025") or r["hist"].get("2024") or r["hist"].get("2023") or {}
         rk = h.get("minRank")
         return (rk if isinstance(rk, int) else 10**9)
     out.sort(key=lambda r: (r["college"], sort_key(r)))
     json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     colleges = set(r["college"] for r in out)
     by_year = {}
-    both = 0
+    multi = 0
     for r in out:
         for y in r["hist"]:
             by_year[y] = by_year.get(y, 0) + 1
-        if "2024" in r["hist"] and "2023" in r["hist"]:
-            both += 1
+        if len(r["hist"]) >= 2:
+            multi += 1
     print(f"转换完成：{len(out)} 个专业组，{len(colleges)} 所院校（跳过 {skip_no_rank} 个无位次）")
-    print(f"各年有数据专业组：{by_year} | 两年都有：{both}")
+    print(f"各年有数据专业组：{by_year} | 两年及以上：{multi}")
     # 位次覆盖范围
-    ranks = [r["hist"].get("2024",{}).get("minRank") or r["hist"].get("2023",{}).get("minRank") for r in out]
+    ranks = [r["hist"].get("2025",{}).get("minRank") or r["hist"].get("2024",{}).get("minRank") or r["hist"].get("2023",{}).get("minRank") for r in out]
     ranks = [x for x in ranks if isinstance(x,int)]
     if ranks:
         print(f"位次覆盖：最高分(位次最小){min(ranks)}名 ~ 最低分(位次最大){max(ranks)}名")

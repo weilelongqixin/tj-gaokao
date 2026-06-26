@@ -7,14 +7,14 @@
   "use strict";
 
   // 配置：基准年（今年）、对比年（用于等位分换算和匹配）
-  const BASE_YEAR = 2025;
-  const COMPARE_YEARS = [2024, 2023];
+  const BASE_YEAR = 2026;
+  const COMPARE_YEARS = [2025, 2024];
 
-  // 各年本科线（用于提示，2026 尚未公布，用 2025 锚点）
+  // 各年本科线（用于提示）
   const LINE_SCORES = {
-    2023: 472,
     2024: 475,
     2025: 476,
+    2026: 458,
   };
 
   // DOM
@@ -129,7 +129,7 @@
       });
 
       const buckets = TJ.Matcher.match(conv.rank, filtered, {
-        preferYears: ["2024", "2023"],
+        preferYears: ["2025", "2024"],
       });
       renderBuckets(buckets);
     } catch (err) {
