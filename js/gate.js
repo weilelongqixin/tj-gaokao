@@ -14,9 +14,9 @@
 (function () {
   "use strict";
 
-  // 默认密码 tj2025 的 SHA-256 哈希（hex）
+  // 当前密码 tj2026 的 SHA-256 哈希（hex）
   // 如需修改密码，把新密码的 SHA-256 填到这里
-  const PASSWORD_HASH = "4c6393e33c0cc162ef74d48ef2076d74ec32c65d2b21a4568a322cedb36a6ca0";
+  const PASSWORD_HASH = "66a0f90657799df5bddf48e6e2822dcb3531d1bd85c5203dd68a5ea5b129c371";
   const SESSION_KEY = "tj_gate_unlocked";
 
   async function sha256(text) {
