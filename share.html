@@ -29,7 +29,8 @@ body{background:var(--bg)}
 <script src="js/lib/qrcode.min.js"></script>
 <script>
 (function(){
-  var url = location.origin + location.pathname.replace(/share\.html$/, '');
+  // 二维码指向落地页（功能介绍页），而非直接应用首页
+  var url = location.origin + location.pathname.replace(/share\.html$/, '') + 'landing.html';
   // 用 qrcode-generator 生成
   try {
     var qr = qrcode(0, 'M');
