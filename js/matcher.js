@@ -89,13 +89,24 @@ TJ.Matcher = (function () {
     }
 
     // 各档内排序——目标：让家长看到的是"最值得填"的，而非极端项。
-    // 冲：ratio 从小到大（越接近考生、越有可能够到的排前面；纯陪跑的极端冲在后面）
-    buckets.chong.sort((a, b) => b.ratio - a.ratio);
-    // 稳：ratio 从小到大（录取位次最接近考生的优先）
-    buckets.wen.sort((a, b) => a.ratio - b.ratio);
-    // 保：ratio 从小到大（录取位次最接近考生、刚好擦边保住的优先；
+    // 三档统一规则：天津本地 > 京津冀 > 其他（天津家长最关心本地和周边），
+    //              同地域内再按各自的"价值优先级"排。
+    // 冲：同地域内 ratio 从大到小（越接近考生、越有可能够到的排前）
+    buckets.chong.sort((a, b) => {
+      const ra = regionPriority(a.record.location);
+      const rb = regionPriority(b.record.location);
+      if (ra !== rb) return ra - rb;
+      return b.ratio - a.ratio;
+    });
+    // 稳：同地域内 ratio 从小到大（录取位次最接近考生的优先）
+    buckets.wen.sort((a, b) => {
+      const ra = regionPriority(a.record.location);
+      const rb = regionPriority(b.record.location);
+      if (ra !== rb) return ra - rb;
+      return a.ratio - b.ratio;
+    });
+    // 保：同地域内 ratio 从小到大（录取位次最接近考生、刚好擦边保住的优先；
     //     而非把分差极大的兜底校排最前——那些没参考价值）
-    //     在此基础上，天津本地和京津冀院校优先（离家近、招生计划多，家长更愿填）
     buckets.bao.sort((a, b) => {
       const ra = regionPriority(a.record.location);
       const rb = regionPriority(b.record.location);
