@@ -95,6 +95,13 @@
     }
     submitBtn.disabled = true;
     submitBtn.textContent = "正在计算…";
+    // 立刻让结果卡片可见并显示加载态，避免"没反应"的错觉
+    rankCard.classList.remove("hidden");
+    matchCard.classList.remove("hidden");
+    bucketsContainer.innerHTML =
+      '<div class="loading"><div class="spinner"></div><div style="margin-top:10px">正在换算位次…</div></div>';
+    // 滚动到结果区
+    rankCard.scrollIntoView({ behavior: "smooth", block: "start" });
 
     try {
       // 1. 位次换算
@@ -102,12 +109,13 @@
       renderRank(conv, score);
 
       // 2. 加载院校 + 选科过滤 + 匹配
-      rankCard.classList.remove("hidden");
-      matchCard.classList.remove("hidden");
       bucketsContainer.innerHTML =
         '<div class="loading"><div class="spinner"></div><div style="margin-top:10px">正在匹配院校…</div></div>';
 
       const groups = await loadColleges();
+      if (!groups || groups.length === 0) {
+        throw new Error("院校数据加载失败（colleges.json 为空或未加载）");
+      }
       const filtered = groups.filter((g) => {
         if (!g.subjectReq) return true;
         const rule = TJ.Subject.parseRequirement(g.subjectReq);
@@ -119,11 +127,12 @@
       });
       renderBuckets(buckets);
     } catch (err) {
-      console.error(err);
+      console.error("[填报助手] 出错：", err);
+      const msg = err && err.message ? err.message : String(err);
+      // 结果区显示错误，并弹窗提示，确保用户能看到
       bucketsContainer.innerHTML =
-        '<div class="empty">匹配出错：' +
-        (err.message || err) +
-        "<br>请稍后重试。</div>";
+        '<div class="empty">计算出错：' + msg + "<br>请刷新页面重试（⌘+Shift+R）。</div>";
+      alert("计算出错：" + msg + "\n\n请尝试强制刷新页面（Mac: ⌘+Shift+R）。");
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "开始换算并推荐";
