@@ -100,8 +100,14 @@
     matchCard.classList.remove("hidden");
     bucketsContainer.innerHTML =
       '<div class="loading"><div class="spinner"></div><div style="margin-top:10px">正在换算位次…</div></div>';
-    // 滚动到结果区
-    rankCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    // 滚动到结果区（兼容性兜底，失败不影响计算）
+    try {
+      if (rankCard.scrollIntoView) {
+        rankCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } catch (e) {
+      /* 滚动失败忽略 */
+    }
 
     try {
       // 1. 位次换算
